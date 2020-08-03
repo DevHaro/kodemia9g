@@ -1,0 +1,45 @@
+
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #F6F6F6;
+}
+
+header{
+	background-color: #18181A;
+	/*display: inline-block;*/
+	width: 100%;
+	height: 50px;
+	text-align: right;
+}
+
+nav li {
+	color: lightgray;
+	list-style: none;
+	display: inline-flex;
+	margin-top: 15px;	
+}
+
+.container-main{		
+	width: 100%;
+	display: flex;
+}
+
+.container-left{	
+	width: 60%;
+	
+}
+
+.container-left img{
+	width: 150px;
+}
+
+.container-right{	
+	width: 30%;	
+	background-color: #3859BA;
+}
+
+form button{
+	background-color: #2CBF93;
+}
+
