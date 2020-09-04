@@ -3,7 +3,7 @@ let kodersArray = [
         idNumber: 1,
         name:"Luis",
         lastName:"Bastida",
-        generacion: "9na. Gen."
+        generacion: "9na. Gen."        
     },
     {
         idNumber: 2,
@@ -45,32 +45,47 @@ let kodersArray = [
 
 // paintArray()
 
-kodersArray.forEach( koder => {
-    let {idNumber, name, lastName, generacion} = koder
-    let listTr = document.createElement('tr')
-    let idNumberTd = document.createElement('td')
-    let idNumberText = document.createTextNode(idNumber)
-    idNumberTd.appendChild(idNumberText)
-    listTr.appendChild(idNumberTd)
+
+const paintArray = () => {
+    document.getElementById('tbodyKoders').innerHTML = ""
+    kodersArray.forEach( koder => {    
+        let {idNumber, name, lastName, generacion} = koder
+        let listTr = document.createElement('tr')
+        let idNumberTd = document.createElement('td')
+        let idNumberText = document.createTextNode(idNumber)
+        idNumberTd.appendChild(idNumberText)
+        listTr.appendChild(idNumberTd)
+        
+        let nameTd = document.createElement('td')
+        let nameText = document.createTextNode(name)
+        nameTd.appendChild(nameText)
+        listTr.appendChild(nameTd)
+            
+        let lastNameTd = document.createElement('td')
+        let lastNameText = document.createTextNode(lastName)
+        lastNameTd.appendChild(lastNameText)
+        listTr.appendChild(lastNameTd)
     
-    let nameTd = document.createElement('td')
-    let nameText = document.createTextNode(name)
-    nameTd.appendChild(nameText)
-    listTr.appendChild(nameTd)
+        let generacionTd = document.createElement('td')
+        let generacionText = document.createTextNode(generacion)
+        generacionTd.appendChild(generacionText)
+        listTr.appendChild(generacionTd)
     
-
-    let lastNameTd = document.createElement('td')
-    let lastNameText = document.createTextNode(lastName)
-    lastNameTd.appendChild(lastNameText)
-    listTr.appendChild(lastNameTd)
-
-    let generacionTd = document.createElement('td')
-    let generacionText = document.createTextNode(generacion)
-    generacionTd.appendChild(generacionText)
-    listTr.appendChild(generacionTd)
-
-    document.getElementById('tbodyKoders').appendChild(listTr)
-})
+        let buttonTd = document.createElement('td')
+        let buttonBtnTd = document.createElement('button')    
+        // buttonBtnTd.setAttribute('class','close')        
+        buttonBtnTd.setAttribute('id','close')
+        let buttonX = document.createTextNode('X')
+        buttonBtnTd.appendChild(buttonX)
+        
+        buttonTd.appendChild(buttonBtnTd)    
+        listTr.appendChild(buttonTd)
+       
+        document.getElementById('tbodyKoders').appendChild(listTr)        
+    })
+} 
+    
+paintArray()
 
 document.getElementById("save-button").addEventListener("click", () =>{
     let idNumber = kodersArray.length+1
@@ -81,6 +96,10 @@ document.getElementById("save-button").addEventListener("click", () =>{
     console.log(itemObject)
     kodersArray.push(itemObject)
     console.log(kodersArray)
-    // paintArray()
+    paintArray()
+})
+
+document.getElementById("close").addEventListener("click", () => {
+    document.getElementsByTagName('tr').innerHTML = ""    
 })
 
