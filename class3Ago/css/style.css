@@ -1,0 +1,32 @@
+*{
+  font-family: aral;
+  color: #333;
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+header{
+  background: #333;  
+}
+
+.btn-green{
+  height: 40px;
+  padding: 10px;
+  background-color:rgba(0,255,0.5);
+  color: white;
+  border: 1px solid rgba(0,255,0.5);
+  border-radius: 5px;
+}
+
+header nav ul a{
+  color: white;
+  text-decoration: none;
+}
+
+
+
+
+

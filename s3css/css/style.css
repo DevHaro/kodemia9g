@@ -1,0 +1,56 @@
+
+*{
+	color-background: pink
+}
+.square-wrapper{
+	width: 90%;
+	height: 120px;
+	border: 1px solid slategray;
+}
+
+.square{
+	width: 100px;
+	height: 100px;
+	border: 1px solid blue;
+	margin-left: auto;
+}
+/* vw = viewport width */
+/*vh = viewport height*/
+
+.square.red{
+	background-color: red;
+}
+.square.blue{
+	background-color: blue;
+}
+.square.green{
+	background-color: green;
+}
+.square.peru{
+	background-color: peru;
+}
+
+#some-id{
+	background-color: slategray;
+}
+
+.d-flex{
+	display:flex;
+}
+
+.end{
+	justify-content: flex-end;
+}
+.center{
+	justify-content: center;
+}
+.around{
+	justify-content: space-around;
+}
+.between{
+	justify-content: space-between;
+}
+
+.start{
+	justify-content: flex-start;
+}

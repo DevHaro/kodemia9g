@@ -1,0 +1,30 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  background-color: navy;
+}
+
+#oculto{
+  display: none;
+}
+
+.wrapper-links{
+  max-height: 0px;  
+}
+
+.shorten-wrapper + input{
+  display: none;
+}
+
+#button-input:checked~#oculto{
+  display: block;
+	max-height: 1000px;
+}
+
+#button-input{
+  display: none;
+}
