@@ -30,7 +30,7 @@ server.post('/adios', (req, res) => {
     res.send('adios con post')
 })
     
-server.all('/*', (req, res) => {
+server.all('*', (req, res) => {
     res.send('no hay nada aqui')
 })
   
