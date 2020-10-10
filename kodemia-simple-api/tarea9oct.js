@@ -4,13 +4,14 @@
   PATCH necesita un body y necesita que le pasemos el id por la ruta
   DELETE /koders/:id -> Borra un koder de la lista por id */
 
+const { response, request } = require('express')
 const express = require('express')
 
 const app = express()
 
 app.use(express.json())
 
-const koders = [
+let koders = [
   {
     id: 1,
     name: 'Mauro'
@@ -64,36 +65,40 @@ app.get('/koders/:id', (request, response) => {
 })
 
 app.patch('/koders/:id', (request, response) => {
-  const id = request.params.id
-  const koderFind = koders.find((koder) => {
-    const isCorrectKoder = koder.id === parseInt(id)
-    return isCorrectKoder
-  })
+  // Obj: Actualizar el nombre de un item (koder)
+  // Tomar el id del request
+  // Buscar el koder al que le corresponde el id
+  // Tomar la información del body (name)
+  // Actualizar el nombre del koder correspondiente al id
 
-  koders.map((koder) => {
-    if (koderFind.id === koder.id) {
+  // Tomar el id del request
+  console.log(request.params.id)
+  const id = parseInt(request.params.id)
+
+  const kodersActualizado = koders.map((koder) => {
+    if (koder.id === id) {
+      // Si el koder es el mismo koder del id solicitado
       const name = request.body.name
       koder.name = name
+      // koder.name = request.body.name
     }
+    return koder
   })
+
+  koders = kodersActualizado
 
   response.json({
     success: true,
-    message: 'Se actualizó',
+    message: 'El Koder fue actualizado',
     data: {
-      koder: koderFind
+      koders
     }
   })
 })
 
 app.delete('/koders/:id', (request, response) => {
-  const id = request.params.id
-  const koderFind = koders.find((koder) => {
-    const isCorrectKoder = koder.id === parseInt(id)
-    return isCorrectKoder
-  })
-  const arrayToDelete = koderFind.id - 1
-  koders.splice(arrayToDelete, 1)
+  const id = request.params.id - 1
+  koders.splice(id, 1)
 
   koders.forEach((koder) => {
     koder.id = koders.indexOf(koder) + 1
@@ -103,7 +108,7 @@ app.delete('/koders/:id', (request, response) => {
     success: true,
     message: 'Se eliminó el Koder',
     data: {
-      koders: koders
+      koders
     }
   })
 })
