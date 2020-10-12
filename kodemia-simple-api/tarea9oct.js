@@ -33,6 +33,29 @@ app.get('/koders', (request, response) => {
   })
 })
 
+app.get('/koders/:id', (request, response) => {
+  console.log(request.params.id)
+  const id = request.params.id
+  const koderFound = koders.find((koder) => {
+    return koder.id === parseInt(id)
+  })
+
+  if (koderFound) {
+    response.json({
+      success: true,
+      data: {
+        koder: koderFound
+      }
+    })
+  } else {
+    response.status(404)
+    response.json({
+      success: false,
+      message: 'Koder not found'
+    })
+  }
+})
+
 app.post('/koders', (request, response) => {
   if (request.body.name) {
     const id = koders.length + 1
@@ -48,22 +71,6 @@ app.post('/koders', (request, response) => {
   }
 })
 
-app.get('/koders/:id', (request, response) => {
-  console.log(request.params.id)
-  const id = request.params.id
-  const koderFind = koders.find((koder) => {
-    const isCorrectKoder = koder.id === parseInt(id)
-    console.log(isCorrectKoder)
-    return isCorrectKoder
-  })
-  response.json({
-    success: true,
-    data: {
-      koder: koderFind
-    }
-  })
-})
-
 app.patch('/koders/:id', (request, response) => {
   // Obj: Actualizar el nombre de un item (koder)
   // Tomar el id del request
@@ -72,20 +79,16 @@ app.patch('/koders/:id', (request, response) => {
   // Actualizar el nombre del koder correspondiente al id
 
   // Tomar el id del request
-  console.log(request.params.id)
   const id = parseInt(request.params.id)
 
-  const kodersActualizado = koders.map((koder) => {
+  koders = koders.map((koder) => {
     if (koder.id === id) {
       // Si el koder es el mismo koder del id solicitado
-      const name = request.body.name
-      koder.name = name
+      koder.name = request.body.name
       // koder.name = request.body.name
     }
     return koder
   })
-
-  koders = kodersActualizado
 
   response.json({
     success: true,
@@ -97,11 +100,9 @@ app.patch('/koders/:id', (request, response) => {
 })
 
 app.delete('/koders/:id', (request, response) => {
-  const id = request.params.id - 1
-  koders.splice(id, 1)
-
-  koders.forEach((koder) => {
-    koder.id = koders.indexOf(koder) + 1
+  const id = parseInt(request.params.id)
+  koders = koders.filter((koder) => {
+    return koder.id !== id
   })
 
   response.json({
