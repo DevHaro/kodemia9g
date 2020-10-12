@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon tarea9oct.js",
+    "start": "nodemon tarea12oct.js",
     "test": "standard --fix",
     "dev": "nodemon index.js"
   },

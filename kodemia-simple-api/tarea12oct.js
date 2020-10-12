@@ -12,6 +12,11 @@ const app = express()
 
 app.use(express.json())
 
+app.use((request, response, next) => {
+  console.log(request.method + request.url)
+  next()
+})
+
 let koders = [
   {
     id: 1,
@@ -25,11 +30,7 @@ let koders = [
   }
 ]
 
-app.get('/koders', (request, response, next) => {
-  console.log(request.method + request.url)
-  next()
-},
-(request, response) => {
+app.get('/koders', (request, response) => {
   response.json({
     success: true,
     data: {
@@ -38,11 +39,7 @@ app.get('/koders', (request, response, next) => {
   })
 })
 
-app.get('/koders/:id', (request, response, next) => {
-  console.log(request.method + request.url)
-  next()
-},
-(request, response) => {
+app.get('/koders/:id', (request, response) => {
   const id = request.params.id
   const koderFound = koders.find((koder) => {
     return koder.id === parseInt(id)
@@ -64,11 +61,7 @@ app.get('/koders/:id', (request, response, next) => {
   }
 })
 
-app.post('/koders', (request, response, next) => {
-  console.log(request.method + request.url)
-  next()
-},
-(request, response) => {
+app.post('/koders', (request, response) => {
   if (request.body.name) {
     const id = koders.length + 1
     const name = request.body.name
@@ -88,11 +81,7 @@ app.post('/koders', (request, response, next) => {
 // Buscar el koder al que le corresponde el id
 // Tomar la información del body (name)
 // Actualizar el nombre del koder correspondiente al id
-app.patch('/koders/:id', (request, response, next) => {
-  console.log(request.method + request.url)
-  next()
-},
-(request, response) => {
+app.patch('/koders/:id', (request, response) => {
   // Tomar el id del request
   const id = parseInt(request.params.id)
 
@@ -114,11 +103,7 @@ app.patch('/koders/:id', (request, response, next) => {
   })
 })
 
-app.delete('/koders/:id', (request, response, next) => {
-  console.log(request.method + request.url)
-  next()
-},
-(request, response) => {
+app.delete('/koders/:id', (request, response) => {
   const id = parseInt(request.params.id)
   koders = koders.filter((koder) => {
     return koder.id !== id
