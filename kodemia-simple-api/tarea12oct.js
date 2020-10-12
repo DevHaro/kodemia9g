@@ -15,7 +15,6 @@ app.use(express.json())
 
 app.use((request, response, next) => {
   console.log(`${request.method}: ${request.url}`)
-  // console.log(request.method + request.url)
   next()
 })
 
