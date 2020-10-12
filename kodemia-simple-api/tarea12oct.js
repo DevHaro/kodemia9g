@@ -1,4 +1,5 @@
 
+//https://expressjs.com/es/guide/using-middleware.html#middleware.application
 /* Escribir una funcion (middleware) que en cada petición imprima
   [METODO]: [url]
   Ejemplo
@@ -13,7 +14,8 @@ const app = express()
 app.use(express.json())
 
 app.use((request, response, next) => {
-  console.log(request.method + request.url)
+  console.log(`${request.method}: ${request.url}`)
+  // console.log(request.method + request.url)
   next()
 })
 
